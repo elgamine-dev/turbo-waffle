@@ -3,7 +3,11 @@ require_once 'vendor/autoload.php';
 
 use Elgamine\Models\Armoire;
 
+// si j'intercepte des données dans le post
+// je modifie l'entrée correspondante
 if(!empty($_POST) && isset($_POST['id'])) {
+	//je demandes au navigateur de rediriger vers l'index
+	header('Location:/?id=' . $_POST['id']);
 	Armoire::save($_POST['id'], [
 		'description'=>$_POST['description'],
 		'temp_lavage'=>$_POST['temp_lavage'],
