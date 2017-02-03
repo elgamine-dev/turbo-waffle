@@ -1,29 +1,19 @@
 <?php
 require_once 'vendor/autoload.php';
+define('ROOT', __DIR__);
 
-use Elgamine\Models\Armoire;
+use Elgamine\Controllers\ArmoireController;
 
 // si j'intercepte des données dans le post
 // je modifie l'entrée correspondante
 if(!empty($_POST) && isset($_POST['id'])) {
-	//je demandes au navigateur de rediriger vers l'index
-	header('Location:/?id=' . $_POST['id']);
-	Armoire::save($_POST['id'], [
-		'description'=>$_POST['description'],
-		'temp_lavage'=>$_POST['temp_lavage'],
-		'couleur'=>$_POST['couleur'],
-		'pointure'=>$_POST['pointure'],
-	]);
+	ArmoireController::save($_POST['id'], $_POST);
 }
 
 if(isset($_GET['id']) && !isset($_GET['action'])) {
-	$sock = Armoire::get($_GET["id"]);
-	require __DIR__ . "/src/Views/details.php";
+	ArmoireController::show($_GET['id']);
 } else if(isset($_GET['id']) && $_GET['action'] === 'edit') {
-	$sock = Armoire::get($_GET["id"]);
-	require __DIR__ . "/src/Views/edit.php";
-	
+	ArmoireController::edit($_GET['id']);
 } else {
-	$socks = Armoire::all();
-	require __DIR__ . "/src/Views/table.php";
+	ArmoireController::home($_GET['id']);
 }
