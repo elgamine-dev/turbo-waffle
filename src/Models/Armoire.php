@@ -18,7 +18,7 @@ class Armoire {
 		return $this->db;
 	}
 
-	public static function all($limit=50, $offset=10){
+	public static function all($limit=50, $offset=0){
 		$a = new self();
 		$result = $a->getInstance()
 			->limit($limit)
@@ -41,17 +41,13 @@ class Armoire {
 		$sock->save();
 	}
 
+	public static function total(){
+		$a = new self;
+		return $a->db->count();
+	}
 
 
 
 
 }
 
-
-/**
- *
- * edition, suppression, ajouter
- * date
- * tri
- * pagination
- */
