@@ -6,6 +6,18 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
 </head>
 <body>
+	<div>Nombre <?= $pagination['perPage'] ?> / Total : <?= $pagination['total'] ?></div>
+
+</pre>
+<div class="ui buttons">
+	<?php for($i=1; $i<= $pagination['nbPages'];$i++): ?>
+		<?php if($i == $pagination['currentPage']): ?>
+			<a class="ui button disabled" href="/?page=<?= $i ?>"><?= $i ?></a>
+		<?php else: ?>
+			<a class="ui button" href="/?page=<?= $i ?>"><?= $i ?></a>
+		<?php endif ?>
+	<?php endfor ?>
+</div>
 <table class="ui table">
 	<thead>
 		<th>id</th>
@@ -28,6 +40,15 @@
 		<?php endforeach ?>
 	</tbody>
 </table>
-	
+
+<div class="ui buttons">
+	<?php for($i=1; $i<= $pagination['nbPages'];$i++): ?>
+		<?php if($i == $pagination['currentPage']): ?>
+			<a class="ui button disabled" href="/?page=<?= $i ?>"><?= $i ?></a>
+		<?php else: ?>
+			<a class="ui button" href="/?page=<?= $i ?>"><?= $i ?></a>
+		<?php endif ?>
+	<?php endfor ?>
+</div>
 </body>
 </html>
