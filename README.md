@@ -16,3 +16,4 @@ TODO:
  - ajout
  - date
  - tri
+ - hardo toreningu
